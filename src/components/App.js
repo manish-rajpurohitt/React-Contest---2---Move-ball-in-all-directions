@@ -10,7 +10,7 @@ const App = () => {
   });
   useEffect(() => {
     // Update the document title using the browser API
-    document.addEventListener("keydown",()=>handleKeyDown);  
+    document.addEventListener("keydown", () => handleKeyDown);
   });
   const handleKeyDown = (event) => {
     switch (event.keyCode) {
@@ -37,7 +37,7 @@ const App = () => {
       default:
         break;
     }
-  });
+  };
   const reset = () => {};
   const renderChoice = (renderBall) => {
     console.log(renderBall);
