@@ -8,10 +8,8 @@ const App = () => {
     left: "0",
     top: "0"
   });
-  useEffect(() => {
-    document.addEventListener("keydown", (event) => handleKeyDown);
-  });
-  const handleKeyDown = (event) => {
+
+  document.addEventListener("keydown", (event) => {
     console.log(event.keyCode);
     switch (event.keyCode) {
       case 39:
@@ -37,10 +35,9 @@ const App = () => {
       default:
         break;
     }
-  };
+  });
   const reset = () => {};
   const renderChoice = (renderBall) => {
-    console.log(renderBall);
     if (!renderBall) {
       return (
         <button className="start" onClick={() => setRenderBall(true)}>
