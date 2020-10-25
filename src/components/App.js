@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React, { Component, useState, useEffect } from "react";
 import "../styles/App.css";
 const App = () => {
   const [renderBall, setRenderBall] = useState(false);
@@ -9,10 +9,10 @@ const App = () => {
     top: "0"
   });
   useEffect(() => {
-    // Update the document title using the browser API
-    document.addEventListener("keydown", () => handleKeyDown);
+    document.addEventListener("keydown", (event) => handleKeyDown);
   });
   const handleKeyDown = (event) => {
+    console.log(event.keyCode);
     switch (event.keyCode) {
       case 39:
         let p = ballPosition["left"];
