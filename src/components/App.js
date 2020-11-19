@@ -39,7 +39,15 @@ const App = () => {
     };
   });
 
-  const reset = () => {};
+  const reset = () => {
+    setBallPosition({
+      left: "0",
+      top: "0"
+    });
+    setRenderBall(false);
+    setX(0);
+    setY(0);
+  };
   const renderChoice = (renderBall) => {
     if (!renderBall) {
       return (
@@ -54,7 +62,7 @@ const App = () => {
 
   return (
     <div className="playground">
-      <button onClick={reset} className="reset">
+      <button onClick={() => reset()} className="reset">
         Reset
       </button>
       {renderChoice(renderBall)}
