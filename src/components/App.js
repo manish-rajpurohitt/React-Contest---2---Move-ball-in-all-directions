@@ -9,33 +9,36 @@ const App = () => {
     top: "0"
   });
 
-  document.addEventListener("keydown", (event) => {
-    console.log(event.keyCode);
-    switch (event.keyCode) {
-      case 39:
-        let p = ballPosition["left"];
-        p = parseInt(p) + 5;
-        setBallPosition({ left: p });
-        break;
-      case 38:
-        let q = ballPosition["left"];
-        q = parseInt(q) + 5;
-        setBallPosition({ top: q });
-        break;
-      case 40:
-        let r = x;
-        r = parseInt(r) + 5;
-        setX(r);
-        break;
-      case 37:
-        let s = y;
-        s = parseInt(s) + 5;
-        setY(s);
-        break;
-      default:
-        break;
+  const handleUserKeyPress = (e) => {
+    console.log(e.keyCode);
+    let valueX = x;
+    let valueY = y;
+    if (e.keyCode === 39) {
+      valueX += 5;
+      setX(valueX);
     }
+    if (e.keyCode === 40) {
+      valueY += 5;
+      setY(valueY);
+    }
+    if (e.keyCode === 38) {
+      valueY -= 5;
+      setY(valueY);
+    }
+    if (e.keyCode === 37) {
+      valueX -= 5;
+      setX(valueX);
+    }
+    setBallPosition({ left: valueX + "px", top: valueY + "px" });
+  };
+
+  useEffect(() => {
+    document.addEventListener("keydown", handleUserKeyPress);
+    return () => {
+      document.removeEventListener("keydown", handleUserKeyPress);
+    };
   });
+
   const reset = () => {};
   const renderChoice = (renderBall) => {
     if (!renderBall) {
@@ -45,17 +48,7 @@ const App = () => {
         </button>
       );
     } else {
-      return (
-        <div
-          className="ball"
-          style={{
-            right: `${x.toString()}`,
-            left: ballPosition["left"],
-            top: ballPosition["top"],
-            bottom: `${y.toString()}`
-          }}
-        ></div>
-      );
+      return <div className="ball" style={ballPosition}></div>;
     }
   };
 
